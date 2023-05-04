@@ -36,48 +36,31 @@ if len(sys.argv)>1:
                 print('received : "%s"' % data.decode('utf-8'))
                 datadecode = data.decode('utf-8')
                 storejson = datadecode.split('\n')
-                #print('split : "%s"' % storejson)
+                print('split : "%s"' % storejson)
                 
-                cleanjson = [i for i in storejson if i]
+                # cleanjson = [i for i in storejson if i]
                 #print('clean : "%s"' % cleanjson)
 
                 pulljson = []
                 listjson = {}
-                finaljson = ''
+                finaljson = '{"id": 42, "result": {"message": "Hello"}}'
 
-                for idx, i in enumerate(cleanjson):
-                    #print('loop :',idx, i)
-                    convjson = json.loads(i)
-                    #print('convert :',convjson)
-                    xid = convjson['id']
-                    xfrom = convjson['from']
-                    xto = convjson['to']
-                    fiz = convjson['fizz']
-                    buz = convjson['buzz']
+                # for idx, i in enumerate(cleanjson):
+                #     #print('loop :',idx, i)
+                #     convjson = json.loads(i)
+                #     #print('convert :',convjson)
+                #     xid = convjson['id']
                     
-                    for x in range(xfrom, xto+1):
-                        if(x % 3 == 0 and x % 5 == 0):
-                            # print(fiz+buz)
-                            pulljson.append(fiz+buz)
-                        elif(x % 3 == 0):
-                            # print(fiz)
-                            pulljson.append(fiz)
-                        elif(x % 5 == 0):
-                            # print(buz)
-                            pulljson.append(buz)
-                        else:
-                            # print(x)
-                            pulljson.append(x)
 
-                    #print('pulljson : ',pulljson)
-                    listjson[xid]=pulljson
-                    finaljson = finaljson + json.dumps(listjson) + '\n'
-                    pulljson = []
-                    listjson = {}
+                #     #print('pulljson : ',pulljson)
+                #     listjson[xid]=pulljson
+                #     finaljson = finaljson + json.dumps(listjson) + '\n'
+                #     pulljson = []
+                #     listjson = {}
                 
                 
-                print(finaljson)
-
+                # print(finaljson)
+                connection.sendall(finaljson.encode('utf-8'))
             else:
                     print ('no data from', client_address)
                     break

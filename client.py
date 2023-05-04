@@ -18,7 +18,8 @@ if len(sys.argv)>1:
     try:
         
         # Send data
-        message = '{"id":"one","from":0,"to":15,"fizz":"zzif","buzz":"zzub"}\n{"id":"two","from":6,"to":10,"fizz":"zzif2","buzz":"zzub2"}\n'
+        # message = '{"id":"one","from":0,"to":15,"fizz":"zzif","buzz":"zzub"}\n{"id":"two","from":6,"to":10,"fizz":"zzif2","buzz":"zzub2"}\n'
+        message = '{"id":1,"method":"echo","params": {"message": "Hello"}}\n{"id":2,"method":"echo","params": {"message": "Good morning"}}'
         print('sending "%s"' % message)
         sock.sendall(message.encode('utf-8'))
 
